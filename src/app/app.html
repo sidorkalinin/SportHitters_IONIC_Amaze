@@ -1,0 +1,48 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-list>
+            <ion-grid class="gridTop">
+                <ion-row>
+                    <ion-col>
+                        <button menuClose ion-item >
+                            <img src="./assets/img/user.png" width="60px" height="60px" class="userImg"><span class="username">Username <p>Hitter</p></span>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+    </ion-header>
+
+    <ion-content class="menus">
+
+        <ion-list>
+            <div *ngFor="let p of pages">
+                <ion-item class="item-stable"
+                      (click)="toggleGroup(p)"
+                      [ngClass]="{active: isGroupShown(p)}" >
+                      <!--<i class="icon" [ngClass]="isGroupShown(p) ? 'md-remove' : 'md-add'"></i>-->
+                      <ion-icon name={{p.iconClass}}></ion-icon>
+                    &nbsp;
+                    {{p.title}} 
+                    <!--<ion-icon name={{isGroupShown(p) ? 'md-remove' : 'md-add'}} *ngIf="p.title=='About'"></ion-icon>-->
+                </ion-item>
+                <ion-item class="item-accordion"
+                          *ngFor="let sub of p.subs" 
+                          [hidden]="isGroupShown(p)" menuClose>
+                          <p class='subItem'>{{sub.title}}</p>
+                </ion-item>
+            </div>
+        </ion-list>
+
+    </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+<!--<ion-tabs>
+    <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+</ion-tabs>-->

@@ -1,0 +1,23 @@
+page-sign-up {
+    .fab, .fab.activated {
+        background: transparent;
+        color: color($colors, border);
+    }
+
+    .list-ios, .list { 
+        & > .item-block:first-child,
+        > .item-block:last-child  {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        & > .item-block:last-child .item-inner {
+            border-bottom: 0.55px solid color($colors, border);
+        }
+    }
+    
+     ion-icon {
+        font-size: 1.6em;
+    }
+    
+}
