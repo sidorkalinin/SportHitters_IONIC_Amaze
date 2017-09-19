@@ -4,7 +4,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
-import {LoginPage} from '../pages/login/login';
+//import {LoginPage} from '../pages/login/login';
+import {TabsPage} from '../pages/tabs/tabs';
 
 @Component({
     templateUrl: 'app.html'
@@ -12,13 +13,11 @@ import {LoginPage} from '../pages/login/login';
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = LoginPage;
+    rootPage: any = TabsPage;
 
     pages: Array<{title: string, component: any, subs: any, iconClass: string}>;
 
-//    tab1Root = HomePage;
-//    tab2Root = HomePage;
-//    tab3Root = HomePage;
+
     
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
@@ -68,6 +67,9 @@ export class MyApp {
      * else, select the given group
      */
     toggleGroup(group) {
+        if(group.title=="Sign Out"){
+            localStorage.removeItem("loggedUser");
+        }
         group.show = !group.show;
     };
     isGroupShown(group) {

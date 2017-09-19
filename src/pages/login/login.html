@@ -3,21 +3,21 @@
     <div class="logo">
         <img src='./assets/img/logo.png' />
     </div>
-    <form>
+    <form >
         <ion-list>
             <!-- User name field -->
             <ion-item >
                 <ion-label>
                     <ion-icon name="md-person"></ion-icon>
                 </ion-label>
-                <ion-input clearInput type="text" placeholder="Username"></ion-input>
+                <ion-input clearInput type="text" name="Username" placeholder="Username" [(ngModel)]="form.username" required></ion-input>
             </ion-item>
             <!-- password field -->
             <ion-item>
                 <ion-label>
                     <ion-icon name="lock"></ion-icon>
                 </ion-label>
-                <ion-input clearInput type="password" placeholder="Password"></ion-input>
+                <ion-input clearInput type="password" placeholder="Password" name="Password"  [(ngModel)]="form.password" required></ion-input>
             </ion-item>
         </ion-list>
         <ion-grid text-center class="gridTop">
@@ -28,7 +28,7 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <button ion-button block (click)="goHome()">LOG IN</button>
+        <button ion-button block (click)="generallogIn()">LOG IN</button>
     </form>
     <button ion-button block clear>Forgot Password</button>
 

@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
+import { TabsPage } from '../pages/tabs/tabs';
 import { FavouritesPage } from '../pages/favourites/favourites';
+import { ContestMainPage } from '../pages/contest-main/contest-main';
+import { CreateContestPage } from '../pages/create-contest/create-contest'; 
+import { JoinContestPage } from '../pages/join-contest/join-contest';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SignUpProvider } from '../providers/sign-up/sign-up';
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
@@ -20,10 +27,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SignUpPage,
     FavouritesPage,
+    TabsPage,
+    ContestMainPage,
+    CreateContestPage,
+    JoinContestPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,12 +44,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     SignUpPage,
-    FavouritesPage
+    FavouritesPage,
+    TabsPage,
+    ContestMainPage,
+    CreateContestPage,
+    JoinContestPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SignUpProvider,
+    LoginProvider
+   ]
 })
 export class AppModule {}
