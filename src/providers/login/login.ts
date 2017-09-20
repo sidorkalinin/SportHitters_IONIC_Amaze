@@ -30,3 +30,6 @@ export class LoginProvider {
             .map(res => res.json())
     }
 }
+// 1093557657422-n6hpqc4h5l7fnk1e245hm9ip7cabg4ko.apps.googleusercontent.com  ---clientid
+// 
+//  poolBhSmdxk3PY7106l1tJw5  --clientsecret

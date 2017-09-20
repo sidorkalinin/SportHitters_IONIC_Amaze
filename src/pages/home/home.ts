@@ -3,6 +3,7 @@ import {NavController, ModalController} from 'ionic-angular';
 
 import {FavouritesPage} from './../favourites/favourites';
 import {LoginPage} from './../login/login';
+//import {TabsPage} from './../tabs/tabs';
 
 
 @Component({
@@ -13,9 +14,9 @@ export class HomePage {
     loggedUser;
     constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
         this.loggedUser = localStorage.getItem("loggedUser");
+        console.log(this.loggedUser)
         if(this.loggedUser == null ){
-        let loginModal = this.modalCtrl.create(LoginPage);
-        loginModal.present();
+         this.navCtrl.setRoot(LoginPage);
         }
 
     }

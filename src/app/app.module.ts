@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { HttpModule } from '@angular/http';
+import { Camera } from '@ionic-native/camera';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import {TwitterConnect} from '@ionic-native/twitter-connect';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -55,7 +59,11 @@ import { LoginProvider } from '../providers/login/login';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SignUpProvider,
-    LoginProvider
+    LoginProvider,
+    Camera,
+    InAppBrowser,
+    TwitterConnect,
+    GooglePlus
    ]
 })
 export class AppModule {}

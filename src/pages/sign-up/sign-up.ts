@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, ModalController, ToastController,ViewController} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 import {LoginPage} from './../login/login';
-import {HomePage} from './../home/home';
+import {TabsPage} from './../tabs/tabs';
 import {SignUpProvider} from '../../providers/sign-up/sign-up';
 
 /**
@@ -15,10 +15,11 @@ import {SignUpProvider} from '../../providers/sign-up/sign-up';
 @Component({
     selector: 'page-sign-up',
     templateUrl: 'sign-up.html',
+    providers: [SignUpProvider]
 })
 export class SignUpPage {
     form: any = [];
-    constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public signUpService: SignUpProvider, private toastCtrl: ToastController,public viewCtrl: ViewController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public signUpService: SignUpProvider, private toastCtrl: ToastController) {
     }
 
     ionViewDidLoad() {
@@ -29,9 +30,7 @@ export class SignUpPage {
      * Redirect to login page
      */
     goLoginIn() {
-        let loginModal = this.modalCtrl.create(LoginPage);
-        loginModal.present();
-        //    this.navCtrl.push(LoginPage);
+            this.navCtrl.push(LoginPage);
     }
 
     /**
@@ -49,7 +48,7 @@ export class SignUpPage {
             if (response.status == true) {
                 var data=JSON.stringify(response.user);
                  localStorage.setItem('loggedUser', data);
-                this.viewCtrl.dismiss();
+                 this.navCtrl.setRoot(TabsPage);
             }
         });
 

@@ -1,9 +1,16 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, ModalController,ToastController,ViewController} from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 import {SignUpPage} from './../sign-up/sign-up'
 import {HomePage} from './../home/home'
 import {LoginProvider} from '../../providers/login/login';
+import {TabsPage} from './../tabs/tabs';
+
+import {Facebook} from 'ng2-cordova-oauth/core';
+import {OauthCordova} from 'ng2-cordova-oauth/platform/cordova';
+import {TwitterConnect} from '@ionic-native/twitter-connect';
+import {GooglePlus} from '@ionic-native/google-plus';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -15,11 +22,22 @@ import {LoginProvider} from '../../providers/login/login';
 @Component({
     selector: 'page-login',
     templateUrl: 'login.html',
+    providers: [LoginProvider]
 })
 export class LoginPage {
-   form: any = [];
-    constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public logInService: LoginProvider, private toastCtrl: ToastController,public viewCtrl: ViewController) {
+    private oauth: OauthCordova = new OauthCordova();
+    private facebookProvider = new Facebook({
+        clientId: '317139815423831',
+        appScope: ["email"]
+    });
+    form: any = [];
+    loggedUser;
+    constructor(public navCtrl: NavController, public navParams: NavParams, public logInService: LoginProvider, private toastCtrl: ToastController, private googlePlus: GooglePlus, private twitter: TwitterConnect) {
         //      localStorage.setItem('showtabs','true');
+        this.loggedUser = localStorage.getItem("loggedUser");
+        if (this.loggedUser !== null) {
+            this.navCtrl.setRoot(HomePage);
+        }
     }
 
     ionViewDidLoad() {
@@ -31,9 +49,7 @@ export class LoginPage {
      * Navigate to signup page 
      */
     goSignUp() {
-        let SignUpModal = this.modalCtrl.create(SignUpPage);
-        SignUpModal.present();
-//        this.navCtrl.push(SignUpPage);
+        this.navCtrl.push(SignUpPage);
 
     }
 
@@ -44,10 +60,10 @@ export class LoginPage {
         // this.navCtrl.popAll();
         this.navCtrl.setRoot(HomePage);
     }
-    
-    generallogIn(){
+
+    generallogIn() {
         console.log(this.form)
-         this.logInService.loginByEmail(this.form).subscribe(response => {
+        this.logInService.loginByEmail(this.form).subscribe(response => {
             console.log(response)
             let toast = this.toastCtrl.create({
                 message: response.message,
@@ -55,11 +71,39 @@ export class LoginPage {
                 position: 'bottom'
             });
             toast.present();
-            if(response.status==true){
-                var data=JSON.stringify(response.user);
-                 localStorage.setItem('loggedUser', data);
-                 this.viewCtrl.dismiss();
+            if (response.status == true) {
+                var data = JSON.stringify(response.user);
+                localStorage.setItem('loggedUser', data);
+                this.navCtrl.setRoot(TabsPage);
+                //                 this.viewCtrl.dismiss();
             }
+        });
+    }
+
+    loginByFacebook() {
+        this.oauth.logInVia(this.facebookProvider).then(success => {
+            console.log("RESULT: " + JSON.stringify(success));
+            this.navCtrl.setRoot(TabsPage);
+        }, error => {
+            console.log("ERROR: ", error);
+        });
+    }
+
+    loginByGoogle() {
+        this.googlePlus.login({})
+            .then(res => {
+                this.navCtrl.setRoot(TabsPage);
+                console.log(res)
+            })
+            .catch(err => console.error(err));
+    }
+
+    loginByTwitter() {
+        this.twitter.login().then(success => {
+            console.log("RESULT: " + JSON.stringify(success));
+            this.navCtrl.setRoot(TabsPage);
+        }, error => {
+            console.log("ERROR: ", error);
         });
     }
 

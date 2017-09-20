@@ -19,7 +19,7 @@
             <div *ngFor="let p of pages">
                 <ion-item class="item-stable"
                       (click)="toggleGroup(p)"
-                      [ngClass]="{active: isGroupShown(p)}" >
+                      [ngClass]="{active: isGroupShown(p)}" menuClose>
                       <!--<i class="icon" [ngClass]="isGroupShown(p) ? 'md-remove' : 'md-add'"></i>-->
                       <ion-icon name={{p.iconClass}}></ion-icon>
                     &nbsp;
