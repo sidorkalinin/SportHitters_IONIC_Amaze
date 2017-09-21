@@ -29,6 +29,21 @@ export class LoginProvider {
         return this.http.post(this.url + '/auth/login', body, this.options)
             .map(res => res.json())
     }
+
+    loginBySocialAccount(data) {
+        let body = JSON.stringify(data);
+        return this.http.post(this.url + '/auth/login', body, this.options)
+            .map(res => res.json())
+    }
+    
+    
+    forgotPassword(email){
+        let body = JSON.stringify({
+            email: email
+        });
+        return this.http.post(this.url + '/auth/change-password', body, this.options)
+            .map(res => res.json())
+    }
 }
 // 1093557657422-n6hpqc4h5l7fnk1e245hm9ip7cabg4ko.apps.googleusercontent.com  ---clientid
 // 

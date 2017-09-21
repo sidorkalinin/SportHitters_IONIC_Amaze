@@ -5,7 +5,7 @@
                 <ion-row>
                     <ion-col>
                         <button menuClose ion-item >
-                            <img src="./assets/img/user.png" width="60px" height="60px" class="userImg"><span class="username">Username <p>Hitter</p></span>
+                            <img src="./assets/img/user.png" width="60px" height="60px" class="userImg"><span class="username" *ngIf="loggedUser!==null">{{loggedUser.username}} <p>Hitter</p></span>
                         </button>
                     </ion-col>
                 </ion-row>

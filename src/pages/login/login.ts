@@ -1,13 +1,12 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {NavController, NavParams, ToastController, Events} from 'ionic-angular';
 
 import {SignUpPage} from './../sign-up/sign-up'
-import {HomePage} from './../home/home'
 import {LoginProvider} from '../../providers/login/login';
 import {TabsPage} from './../tabs/tabs';
+import {ForgotPasswordPage} from './../forgot-password/forgot-password';
 
-import {Facebook} from 'ng2-cordova-oauth/core';
-import {OauthCordova} from 'ng2-cordova-oauth/platform/cordova';
+import {Facebook, FacebookLoginResponse} from '@ionic-native/facebook';
 import {TwitterConnect} from '@ionic-native/twitter-connect';
 import {GooglePlus} from '@ionic-native/google-plus';
 
@@ -22,21 +21,15 @@ import {GooglePlus} from '@ionic-native/google-plus';
 @Component({
     selector: 'page-login',
     templateUrl: 'login.html',
-    providers: [LoginProvider]
 })
 export class LoginPage {
-    private oauth: OauthCordova = new OauthCordova();
-    private facebookProvider = new Facebook({
-        clientId: '317139815423831',
-        appScope: ["email"]
-    });
     form: any = [];
     loggedUser;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public logInService: LoginProvider, private toastCtrl: ToastController, private googlePlus: GooglePlus, private twitter: TwitterConnect) {
-        //      localStorage.setItem('showtabs','true');
+    constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public logInService: LoginProvider, private toastCtrl: ToastController, private googlePlus: GooglePlus, private twitter: TwitterConnect, private fb: Facebook) {
         this.loggedUser = localStorage.getItem("loggedUser");
+        this.events.publish('user:loggedIn');
         if (this.loggedUser !== null) {
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(TabsPage);
         }
     }
 
@@ -58,11 +51,10 @@ export class LoginPage {
      */
     goHome() {
         // this.navCtrl.popAll();
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(TabsPage);
     }
 
     generallogIn() {
-        console.log(this.form)
         this.logInService.loginByEmail(this.form).subscribe(response => {
             console.log(response)
             let toast = this.toastCtrl.create({
@@ -72,39 +64,98 @@ export class LoginPage {
             });
             toast.present();
             if (response.status == true) {
+                localStorage.removeItem("loggedUser");
                 var data = JSON.stringify(response.user);
                 localStorage.setItem('loggedUser', data);
                 this.navCtrl.setRoot(TabsPage);
+                this.events.publish('user:loggedIn');
                 //                 this.viewCtrl.dismiss();
             }
         });
     }
 
+    /**
+     * login or sign up by facebook
+     */
+
     loginByFacebook() {
-        this.oauth.logInVia(this.facebookProvider).then(success => {
-            console.log("RESULT: " + JSON.stringify(success));
-            this.navCtrl.setRoot(TabsPage);
-        }, error => {
-            console.log("ERROR: ", error);
-        });
+        this.fb.login(['public_profile', 'user_friends', 'email'])
+            .then((res: FacebookLoginResponse) => {
+                var data = {
+                    facebook_id: res.authResponse.userID
+                }
+                this.logInService.loginBySocialAccount(data).subscribe(response => {
+                    console.log(response)
+                    let toast = this.toastCtrl.create({
+                        message: response.message,
+                        duration: 3000,
+                        position: 'bottom'
+                    });
+                    toast.present();
+                    if (response.status == true) {
+                        localStorage.removeItem("loggedUser");
+                        var data = JSON.stringify(response.user);
+                        localStorage.setItem('loggedUser', data);
+                        this.navCtrl.setRoot(TabsPage);
+                        this.events.publish('user:loggedIn');
+
+                    }
+                });
+            })
+            .catch(e => console.log('Error logging into Facebook' + JSON.stringify(e)));
     }
+    /**
+     * login or sign up by google
+     */
 
     loginByGoogle() {
-        this.googlePlus.login({})
-            .then(res => {
+        this.googlePlus.login({
+            'webClientId': '1093557657422-n6hpqc4h5l7fnk1e245hm9ip7cabg4ko.apps.googleusercontent.com',
+            'offline': true,
+        }).then(res => {
+                alert("RESULT: " + JSON.stringify(res));
                 this.navCtrl.setRoot(TabsPage);
-                console.log(res)
             })
-            .catch(err => console.error(err));
+            .catch(err => alert("ERROR: " + JSON.stringify(err)));
     }
+
+    /**
+     * login or sign up by twitter
+     */
 
     loginByTwitter() {
         this.twitter.login().then(success => {
-            console.log("RESULT: " + JSON.stringify(success));
-            this.navCtrl.setRoot(TabsPage);
+            var data = {
+                displayname: success.userName,
+                twitter_id: success.userId,
+            }
+            this.logInService.loginBySocialAccount(data).subscribe(response => {
+                console.log(response)
+                let toast = this.toastCtrl.create({
+                    message: response.message,
+                    duration: 3000,
+                    position: 'bottom'
+                });
+                toast.present();
+                if (response.status == true) {
+                    localStorage.removeItem("loggedUser");
+                    var data = JSON.stringify(response.user);
+                    localStorage.setItem('loggedUser', data);
+                    this.navCtrl.setRoot(TabsPage);
+                    this.events.publish('user:loggedIn');
+                }
+            });
         }, error => {
-            console.log("ERROR: ", error);
+            console.log("ERROR: " + JSON.stringify(error));
         });
+    }
+
+    /**
+     * 
+     * got to forgot password page
+     */
+    goToforgotPassword() {
+        this.navCtrl.push(ForgotPasswordPage);
     }
 
 }

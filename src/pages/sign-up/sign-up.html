@@ -7,7 +7,7 @@
     <div class="logo">
         <img src='./assets/img/logo.png' />
     </div>
-    <form (ngSubmit)="GeneralSignUp()" >
+    <form >
         <ion-list>
             <!-- User name field -->
             <ion-item>
@@ -32,13 +32,13 @@
             </ion-item>
         </ion-list>
         <ion-grid text-center class="gridTop">
-            <ion-row>
-                <ion-col> <button ion-button icon-only clear><ion-icon name="logo-facebook"></ion-icon></button>
-                    <button ion-button icon-only clear><ion-icon name="logo-googleplus"></ion-icon></button>
-                    <button ion-button icon-only clear><ion-icon name="logo-twitter"></ion-icon></button>
+           <ion-row>
+                <ion-col> <button ion-button icon-only clear (click)="loginByFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
+                    <button ion-button icon-only clear  (click)="loginByGoogle()"><ion-icon name="logo-googleplus"></ion-icon></button>
+                    <button ion-button icon-only clear (click)="loginByTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <button ion-button type="submit" block>SIGN UP</button>
+        <button ion-button (click)="GeneralSignUp()" block>SIGN UP</button>
     </form>
 </ion-content>

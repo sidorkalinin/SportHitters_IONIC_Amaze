@@ -14,7 +14,6 @@ export class HomePage {
     loggedUser;
     constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
         this.loggedUser = localStorage.getItem("loggedUser");
-        console.log(this.loggedUser)
         if(this.loggedUser == null ){
          this.navCtrl.setRoot(LoginPage);
         }

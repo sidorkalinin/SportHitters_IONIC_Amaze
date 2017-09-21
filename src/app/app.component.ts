@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform} from 'ionic-angular';
+import {Nav, Platform, Events} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
@@ -17,10 +17,20 @@ export class MyApp {
 
     pages: Array<{title: string, component: any, subs: any, iconClass: string}>;
 
-
+    loggedUser:any = {};
     
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events) {
         this.initializeApp();
+        // set logged user
+        var user = localStorage.getItem("loggedUser");
+        this.loggedUser = JSON.parse(user);
+        
+        // update logged user
+        events.subscribe('user:loggedIn', () => {
+            var user = localStorage.getItem("loggedUser");
+            this.loggedUser = JSON.parse(user)
+            console.log(this.loggedUser)
+        });
 
         // used for an example of ngFor and navigation
         this.pages = [
@@ -66,8 +76,11 @@ export class MyApp {
      * else, select the given group
      */
     toggleGroup(group) {
-        if(group.title=="Sign Out"){
+        if (group.title == "Sign Out") {
             localStorage.removeItem("loggedUser");
+            this.loggedUser={
+             username:""
+            };
             this.nav.setRoot(LoginPage);
         }
         group.show = !group.show;
