@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Details } from '../../details';
 
 /*
   Generated class for the SignUpProvider provider.
@@ -10,7 +11,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class SignUpProvider {
-    url = "http://18.220.119.107/api";
+    url = Details.URL;
     headers = new Headers({
         'Content-Type': 'application/json'
     });

@@ -67,6 +67,7 @@ export class LoginPage {
                 localStorage.removeItem("loggedUser");
                 var data = JSON.stringify(response.user);
                 localStorage.setItem('loggedUser', data);
+                localStorage.setItem('token', response.JWT);
                 this.navCtrl.setRoot(TabsPage);
                 this.events.publish('user:loggedIn');
                 //                 this.viewCtrl.dismiss();
@@ -96,6 +97,7 @@ export class LoginPage {
                         localStorage.removeItem("loggedUser");
                         var data = JSON.stringify(response.user);
                         localStorage.setItem('loggedUser', data);
+                        localStorage.setItem('token', response.JWT);
                         this.navCtrl.setRoot(TabsPage);
                         this.events.publish('user:loggedIn');
 
@@ -141,6 +143,7 @@ export class LoginPage {
                     localStorage.removeItem("loggedUser");
                     var data = JSON.stringify(response.user);
                     localStorage.setItem('loggedUser', data);
+                    localStorage.setItem('token', response.JWT);
                     this.navCtrl.setRoot(TabsPage);
                     this.events.publish('user:loggedIn');
                 }

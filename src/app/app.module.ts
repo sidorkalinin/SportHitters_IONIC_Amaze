@@ -25,6 +25,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SignUpProvider } from '../providers/sign-up/sign-up';
 import { LoginProvider } from '../providers/login/login';
+import { SportsProvider } from '../providers/sports/sports';
+
+
 
 @NgModule({
   declarations: [
@@ -70,6 +73,7 @@ import { LoginProvider } from '../providers/login/login';
     TwitterConnect,
     GooglePlus,
     Facebook,
+    SportsProvider,
    ]
 })
 export class AppModule {}
