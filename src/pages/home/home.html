@@ -17,10 +17,11 @@
 </ion-header>
 
 <ion-content padding>
+    <!--[ngIf]="sport.games[0].length>0"-->
     <div class="col adversitsement" ><p text-center>ADVERTISMENTS</p></div>
-    <ion-card *ngFor="let sport of sportsList">
+    <ion-card *ngFor="let sport of sportsList" >
         <ion-card-header>
-            {{sport.name}} Game Lines <a float-right ><ion-icon name="ios-chatbubbles"></ion-icon></a>
+            {{sport.name | uppercase}} Game Lines <a float-right ><ion-icon name="ios-chatbubbles"></ion-icon></a>
         </ion-card-header>
         <ion-card-content>
             <ion-grid>
@@ -30,16 +31,34 @@
                     <ion-col col-3><p>TOTAL</p></ion-col>
                     <ion-col col-1></ion-col>
                 </ion-row>
-                <ion-row>
-                    <ion-col><p>TODAY 19:30 EDT</p></ion-col>
-                </ion-row>
-                <ion-row class="rowback" *ngFor="let game of sport.games">
-                    <ion-col col-5><p>West Virginia</p></ion-col>
-                    <ion-col col-3><p>-1.5</p></ion-col>
-                    <ion-col col-3><p>O 9.5</p></ion-col>
-                    <ion-col col-1 class="chatrow"></ion-col>
-                </ion-row>
-               
+                <ion-grid *ngFor="let game of sport.games" >
+                    <div *ngFor="let data of game" >
+<!--                        <ion-row [ngIf]="!data.MatchTime">
+                            <ion-col><p>No games found</p></ion-col>
+                        </ion-row>-->
+                        <ion-row>
+                            <ion-col><p>{{data.MatchTime | date}}</p></ion-col>
+                        </ion-row>
+                        <ion-row class="rowback" >
+                            <ion-col col-5><p>{{data.HomeTeam}}</p></ion-col>
+                            <ion-col col-3><p>{{data.Odds[0].PointSpreadHome}}</p></ion-col>
+                            <ion-col col-3><p>{{data.Odds[0].PointSpreadHomeLine}}</p></ion-col>
+                            <ion-col col-1 class="chatrow"></ion-col>
+                        </ion-row>
+                        <ion-row class="rowback">
+                            <ion-col col-5></ion-col>
+                            <ion-col col-3></ion-col>
+                            <ion-col col-3></ion-col>
+                            <ion-col col-1 class="chatrow"><ion-icon name="ios-chatbubbles"></ion-icon></ion-col>
+                        </ion-row>
+                        <ion-row class="rowback" >
+                            <ion-col col-5><p>{{data.AwayTeam}}</p></ion-col>
+                            <ion-col col-3><p>{{data.Odds[0].PointSpreadAway}}</p></ion-col>
+                            <ion-col col-3><p>{{data.Odds[0].PointSpreadAwayLine}}</p></ion-col>
+                            <ion-col col-1 class="chatrow"></ion-col>
+                        </ion-row>
+                    </div>
+                </ion-grid>
             </ion-grid>
         </ion-card-content>
     </ion-card>
