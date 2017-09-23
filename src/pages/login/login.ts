@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams, ToastController, Events} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, ToastController, Events } from 'ionic-angular';
 
-import {SignUpPage} from './../sign-up/sign-up'
-import {LoginProvider} from '../../providers/login/login';
-import {TabsPage} from './../tabs/tabs';
-import {ForgotPasswordPage} from './../forgot-password/forgot-password';
+import { SignUpPage } from './../sign-up/sign-up'
+import { LoginProvider } from '../../providers/login/login';
+import { TabsPage } from './../tabs/tabs';
+import { ForgotPasswordPage } from './../forgot-password/forgot-password';
 
-import {Facebook, FacebookLoginResponse} from '@ionic-native/facebook';
-import {TwitterConnect} from '@ionic-native/twitter-connect';
-import {GooglePlus} from '@ionic-native/google-plus';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 
 /**
@@ -115,9 +115,9 @@ export class LoginPage {
             'webClientId': '1093557657422-n6hpqc4h5l7fnk1e245hm9ip7cabg4ko.apps.googleusercontent.com',
             'offline': true,
         }).then(res => {
-                alert("RESULT: " + JSON.stringify(res));
-                this.navCtrl.setRoot(TabsPage);
-            })
+            alert("RESULT: " + JSON.stringify(res));
+            this.navCtrl.setRoot(TabsPage);
+        })
             .catch(err => alert("ERROR: " + JSON.stringify(err)));
     }
 
@@ -132,7 +132,7 @@ export class LoginPage {
                 twitter_id: success.userId,
             }
             this.logInService.loginBySocialAccount(data).subscribe(response => {
-                console.log(response)
+                // alert(JSON.stringify(response));
                 let toast = this.toastCtrl.create({
                     message: response.message,
                     duration: 3000,
@@ -148,9 +148,12 @@ export class LoginPage {
                     this.events.publish('user:loggedIn');
                 }
             });
+
+
         }, error => {
-            console.log("ERROR: " + JSON.stringify(error));
+            console.log(JSON.stringify(error));
         });
+
     }
 
     /**

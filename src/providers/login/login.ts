@@ -33,8 +33,9 @@ export class LoginProvider {
 
     loginBySocialAccount(data) {
         let body = JSON.stringify(data);
+        alert('heello');
         return this.http.post(this.url + '/auth/login', body, this.options)
-            .map(res => res.json())
+            .map(res => {alert(res); return res.json()})
     }
     
     
