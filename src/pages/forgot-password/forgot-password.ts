@@ -36,6 +36,7 @@ export class ForgotPasswordPage {
                 position: 'bottom'
             });
             toast.present();
+            this.navCtrl.push(LoginPage);
         })
     }
 }

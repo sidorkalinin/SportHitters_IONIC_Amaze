@@ -33,11 +33,10 @@
                 </ion-row>
                 <ion-grid *ngFor="let game of sport.games" >
                     <div *ngFor="let data of game" >
-<!--                        <ion-row [ngIf]="!data.MatchTime">
-                            <ion-col><p>No games found</p></ion-col>
-                        </ion-row>-->
                         <ion-row>
-                            <ion-col><p>{{data.MatchTime | date}}</p></ion-col>
+                            <ion-col>
+                                <p>{{data.MatchTime | date}}</p>
+                            </ion-col>
                         </ion-row>
                         <ion-row class="rowback" >
                             <ion-col col-5><p>{{data.HomeTeam}}</p></ion-col>
