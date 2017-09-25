@@ -132,7 +132,6 @@ export class LoginPage {
                 twitter_id: success.userId,
             }
             this.logInService.loginBySocialAccount(data).subscribe(response => {
-                // alert(JSON.stringify(response));
                 let toast = this.toastCtrl.create({
                     message: response.message,
                     duration: 3000,

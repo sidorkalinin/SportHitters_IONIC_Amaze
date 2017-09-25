@@ -1,10 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, Events} from 'ionic-angular';
+import {Nav, Platform, Events,MenuController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
 import {LoginPage} from '../pages/login/login';
+import { ResponsiblePlayPage } from '../pages/responsible-play/responsible-play';
+import { HowToPlayPage } from '../pages/how-to-play/how-to-play';
+import { RulesPage } from '../pages/rules/rules';
 //import {TabsPage} from '../pages/tabs/tabs';
 
 @Component({
@@ -19,7 +22,7 @@ export class MyApp {
 
     loggedUser:any = {};
     
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events,public menuCtrl: MenuController) {
         this.initializeApp();
         // set logged user
         var user = localStorage.getItem("loggedUser");
@@ -40,13 +43,13 @@ export class MyApp {
             {
                 title: 'About', component: HomePage, iconClass: 'md-information-circle', subs: [
                     {
-                        title: 'How To Play', component: HomePage
+                        title: 'How To Play', component: HowToPlayPage
                     },
                     {
-                        title: 'Rules', component: HomePage
+                        title: 'Rules', component: RulesPage
                     },
                     {
-                        title: 'Responsible Play', component: HomePage
+                        title: 'Responsible Play', component: ResponsiblePlayPage
                     }
                 ]
             },
@@ -65,9 +68,11 @@ export class MyApp {
     }
 
     openPage(page) {
+        
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
-        this.nav.setRoot(page.component);
+        this.nav.push(page.component);
+        
     }
 
 
@@ -83,9 +88,19 @@ export class MyApp {
             };
             this.nav.setRoot(LoginPage);
         }
-        group.show = !group.show;
+        else if (group.title == "About") {
+           group.show = !group.show;
+        }
+        else{
+             this.nav.push(group.component);
+             this.menuCtrl.close();
+        }
+        
     };
-    isGroupShown(group) {
+    
+    isSubmenuShown(group) {
         return group.show;
     };
+    
+   
 }

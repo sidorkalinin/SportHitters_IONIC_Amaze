@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from './../home/home';
 import { ContestMainPage } from './../contest-main/contest-main';
+//import { HowToPlayPage } from './../how-to-play/how-to-play';
+//import { RulesPage } from './../rules/rules';
+//import { ResponsiblePlayPage } from './../responsible-play/responsible-play';
 /**
  * Generated class for the TabsPage page.
  *

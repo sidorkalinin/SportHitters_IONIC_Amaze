@@ -19,16 +19,16 @@
             <div *ngFor="let p of pages">
                 <ion-item class="item-stable"
                       (click)="toggleGroup(p)"
-                      [ngClass]="{active: isGroupShown(p)}" menuClose>
-                      <!--<i class="icon" [ngClass]="isGroupShown(p) ? 'md-remove' : 'md-add'"></i>-->
+                      [ngClass]="{active: isSubmenuShown(p)}">
+                      <!--<i class="icon" [ngClass]="isSubmenuShown(p) ? 'md-remove' : 'md-add'"></i>-->
                       <ion-icon name={{p.iconClass}}></ion-icon>
                     &nbsp;
                     {{p.title}} 
-                    <!--<ion-icon name={{isGroupShown(p) ? 'md-remove' : 'md-add'}} *ngIf="p.title=='About'"></ion-icon>-->
+                    <!--<ion-icon name={{isSubmenuShown(p) ? 'md-remove' : 'md-add'}} *ngIf="p.title=='About'"></ion-icon>-->
                 </ion-item>
                 <ion-item class="item-accordion"
                           *ngFor="let sub of p.subs" 
-                          [hidden]="isGroupShown(p)" menuClose>
+                          [hidden]="isSubmenuShown(p)" menuClose (click)="openPage(sub)">
                           <p class='subItem'>{{sub.title}}</p>
                 </ion-item>
             </div>

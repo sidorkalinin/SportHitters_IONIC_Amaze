@@ -32,7 +32,12 @@
                     <ion-col col-1></ion-col>
                 </ion-row>
                 <ion-grid *ngFor="let game of sport.games" >
-                    <div *ngFor="let data of game" >
+                    <ion-row *ngIf="!game[0]" class="rowback">
+                        <ion-col>
+                            <p text-center>No games found</p>
+                        </ion-col>
+                    </ion-row>
+                    <div *ngFor="let data of game">
                         <ion-row>
                             <ion-col>
                                 <p>{{data.MatchTime | date}}</p>
@@ -61,4 +66,9 @@
             </ion-grid>
         </ion-card-content>
     </ion-card>
+    <br>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"
+                                     loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

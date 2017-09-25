@@ -20,6 +20,10 @@ import { FavouritesPage } from '../pages/favourites/favourites';
 import { ContestMainPage } from '../pages/contest-main/contest-main';
 import { CreateContestPage } from '../pages/create-contest/create-contest'; 
 import { JoinContestPage } from '../pages/join-contest/join-contest';
+import { ResponsiblePlayPage } from '../pages/responsible-play/responsible-play';
+import { HowToPlayPage } from '../pages/how-to-play/how-to-play';
+import { RulesPage } from '../pages/rules/rules';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +45,10 @@ import { SportsProvider } from '../providers/sports/sports';
     ContestMainPage,
     CreateContestPage,
     JoinContestPage,
-    ForgotPasswordPage
+    ResponsiblePlayPage,
+    ForgotPasswordPage,
+    HowToPlayPage,
+    RulesPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +67,10 @@ import { SportsProvider } from '../providers/sports/sports';
     ContestMainPage,
     CreateContestPage,
     JoinContestPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    ResponsiblePlayPage,
+    HowToPlayPage,
+    RulesPage
   ],
   providers: [
     StatusBar,
