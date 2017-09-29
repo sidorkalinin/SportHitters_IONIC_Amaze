@@ -7,29 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Join Contest</ion-title>
+    <ion-title>NFL Contest</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding (click)="goToContestDetails('sports')" >
    <div class="col" ><p>Choose Your Sport</p></div>
     <ion-list>
-        <button ion-item >
-                <i class="circle"></i> NFL
-        </button>
-         <button ion-item >
-                <i class="circle"></i> MBL
-        </button>
-         <button ion-item >
-                <i class="circle"></i> NFL
-        </button>
-         <button ion-item>
-                <i class="circle" ></i> NBL
-        </button>
-         <button ion-item >
-                <i class="circle" ></i> MBL
+        <button ion-item  *ngFor="let sports of sportsList"  (click)="goToContestDetails(sports)">
+                <i class="circle"></i> {{sports | uppercase}}
         </button>
     </ion-list>
 </ion-content>

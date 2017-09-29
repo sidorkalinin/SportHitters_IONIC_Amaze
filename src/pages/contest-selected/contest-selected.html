@@ -1,0 +1,118 @@
+<!--
+  Generated template for the ContestSelectedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>NFL Contest</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-label text-center>NFL</ion-label>
+    <p text-center><span>$25</span>&nbsp;&nbsp;<span>10 Players</span>&nbsp;&nbsp;<span>6 Teams</span></p>
+    <ion-card >
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-5></ion-col>
+                    <ion-col col-3><p>SPREAD</p></ion-col>
+                    <ion-col col-3><p>TOTAL</p></ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+                <ion-grid >
+                    <ion-row>
+                        <ion-col>
+                            <p>TODAY 13:00 EDT</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>Kansas City</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>O 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>New England</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>U 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <br>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>Kansas City</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>O 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>New England</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>U 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <br>
+                    <ion-row>
+                        <ion-col>
+                            <p>TODAY 14:00 EDT</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>Kansas City</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>O 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>New England</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>U 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <br>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>Kansas City</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>O 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                    <ion-row class="rowback" >
+                        <ion-col col-6><p>New England</p></ion-col>
+                        <ion-col col-3><p>-1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                        <ion-col col-3  class="chatrow"><p>U 1.5 <input type="radio" value="-1.5" name="radio"></p></ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+    <ion-footer (click)=showFooter(footer) *ngIf="!footer">
+        <ion-label class="ionLabel">Your Picks (6 out of 6) <span float-right><ion-icon name="ios-arrow-up"></ion-icon></span></ion-label>
+    </ion-footer>
+
+    <ion-footer (click)=showFooter(footer) *ngIf="footer" >
+        <ion-label class="ionLabel">Your Picks (6 out of 6) <span float-right><ion-icon name="ios-arrow-down"></ion-icon></span></ion-label>
+        <ion-grid class="output">
+            <ion-row >
+                <ion-col col-6><p>Kansas City</p></ion-col>
+                <ion-col col-3><p>-1.5 </p></ion-col>
+                <ion-col col-3 ><p>O 1.5 </p></ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col col-6><p>New England</p></ion-col>
+                <ion-col col-3><p>-1.5 </p></ion-col>
+                <ion-col col-3 ><p>O 1.5 </p></ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col col-6><p>London</p></ion-col>
+                <ion-col col-3><p>-1.5 </p></ion-col>
+                <ion-col col-3 ><p>O 1.5 </p></ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col col-6><p>Sweden</p></ion-col>
+                <ion-col col-3><p>-1.5 </p></ion-col>
+                <ion-col col-3 ><p>O 1.5 </p></ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <p text-center><button ion-button color="light" (click)="submitPicks()">Submit Picks</button></p>
+    </ion-footer>
+
+</ion-content>

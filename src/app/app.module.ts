@@ -20,6 +20,8 @@ import { FavouritesPage } from '../pages/favourites/favourites';
 import { ContestMainPage } from '../pages/contest-main/contest-main';
 import { CreateContestPage } from '../pages/create-contest/create-contest'; 
 import { JoinContestPage } from '../pages/join-contest/join-contest';
+import { ContestDetailsPage } from '../pages/contest-details/contest-details';
+import { ContestSelectedPage } from '../pages/contest-selected/contest-selected';
 import { ResponsiblePlayPage } from '../pages/responsible-play/responsible-play';
 import { HowToPlayPage } from '../pages/how-to-play/how-to-play';
 import { RulesPage } from '../pages/rules/rules';
@@ -48,7 +50,9 @@ import { SportsProvider } from '../providers/sports/sports';
     ResponsiblePlayPage,
     ForgotPasswordPage,
     HowToPlayPage,
-    RulesPage
+    RulesPage,
+    ContestDetailsPage,
+    ContestSelectedPage
   ],
   imports: [
     BrowserModule,
@@ -70,6 +74,8 @@ import { SportsProvider } from '../providers/sports/sports';
     ForgotPasswordPage,
     ResponsiblePlayPage,
     HowToPlayPage,
+    ContestDetailsPage,
+    ContestSelectedPage,
     RulesPage
   ],
   providers: [

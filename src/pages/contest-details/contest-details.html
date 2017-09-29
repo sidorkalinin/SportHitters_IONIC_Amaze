@@ -1,0 +1,46 @@
+<!--
+  Generated template for the ContestDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>NFL Contest</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-label>Number of Players</ion-label>
+    <ul class="segmented-control">
+        <li class="segmented-control__item"  [ngClass]="{'back': players == '1'}"> <input class="segmented-control__input" type="radio" value="1"   name="option" id="option-3" checked [(ngModel)]="players"><label class="segmented-control__label" for="option-3" > 1</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': players == '10'}"> <input class="segmented-control__input" type="radio" value="10"   name="option" id="option-4" [(ngModel)]="players" ><label class="segmented-control__label" for="option-4" >10</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': players == '25'}"> <input class="segmented-control__input" type="radio" value="25"   name="option" id="option-5" [(ngModel)]="players"><label class="segmented-control__label" for="option-5" >25</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': players == '100'}"> <input class="segmented-control__input" type="radio" value="100"   name="option" id="option-6" [(ngModel)]="players"><label class="segmented-control__label" for="option-6" >100</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': players == 'All'}"> <input class="segmented-control__input" type="radio" value="All"   name="option" id="option-7" [(ngModel)]="players"><label class="segmented-control__label" for="option-7" > All</label> </li>
+    </ul>
+
+    <ion-label>Number of Teams</ion-label>
+    <ul class="segmented-control">
+        <li class="segmented-control__item" [ngClass]="{'back': team == '6'}"> <input class="segmented-control__input" type="radio" value="6"   name="option" id="option-8" [(ngModel)]="team"><label class="segmented-control__label" for="option-8" >6</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': team == '10'}"> <input class="segmented-control__input" type="radio" value="10"   name="option" id="option-9" checked [(ngModel)]="team" ><label class="segmented-control__label" for="option-9" >10</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': team == 'All'}"> <input class="segmented-control__input" type="radio" value="All"   name="options" id="option-10" [(ngModel)]="team"><label class="segmented-control__label" for="option-10" >All</label> </li>
+    </ul>
+
+    <ion-label>Number of Players</ion-label>
+    <ul class="segmented-control">
+        <li class="segmented-control__item" [ngClass]="{'back': gameType == '$10'}"> <input class="segmented-control__input" type="radio" value="$10"   name="option" id="option-1"  [(ngModel)]="gameType"><label class="segmented-control__label" for="option-1" >  $10<br> Open</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': gameType == '$25'}"> <input class="segmented-control__input" type="radio" value="$25"   name="option" id="option-2" [(ngModel)]="gameType" ><label class="segmented-control__label" for="option-2" >  $25<br> Open</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': gameType == '$50'}"> <input class="segmented-control__input" type="radio" value="$50"   name="option" id="option-15" checked [(ngModel)]="gameType"><label class="segmented-control__label" for="option-15" >$50<br> Open</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': gameType == '$100'}"> <input class="segmented-control__input" type="radio" value="$100"   name="option" id="option-16" [(ngModel)]="gameType"><label class="segmented-control__label" for="option-16" > $100<br> Closed</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': gameType == 'Free'}"> <input class="segmented-control__input" type="radio" value="Free"   name="option" id="option-17" [(ngModel)]="gameType"><label class="segmented-control__label" for="option-17" > Free<br> Open</label> </li>
+    </ul>
+
+    <br><br>
+
+    <button ion-button color="light" block (click)="createContest()">Continue</button>
+</ion-content>
