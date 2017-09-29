@@ -83,11 +83,12 @@
             </ion-grid>
         </ion-card-content>
     </ion-card>
-    <ion-footer (click)=showFooter(footer) *ngIf="!footer">
+</ion-content>
+<ion-footer>
+    <div (click)=showFooter(footer) *ngIf="!footer">
         <ion-label class="ionLabel">Your Picks (6 out of 6) <span float-right><ion-icon name="ios-arrow-up"></ion-icon></span></ion-label>
-    </ion-footer>
-
-    <ion-footer (click)=showFooter(footer) *ngIf="footer" >
+    </div >
+    <div (click)=showFooter(footer) *ngIf="footer">
         <ion-label class="ionLabel">Your Picks (6 out of 6) <span float-right><ion-icon name="ios-arrow-down"></ion-icon></span></ion-label>
         <ion-grid class="output">
             <ion-row >
@@ -113,6 +114,6 @@
         </ion-grid>
 
         <p text-center><button ion-button color="light" (click)="submitPicks()">Submit Picks</button></p>
-    </ion-footer>
+    </div>
+</ion-footer>
 
-</ion-content>

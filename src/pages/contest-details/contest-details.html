@@ -17,7 +17,7 @@
 
     <ion-label>Number of Players</ion-label>
     <ul class="segmented-control">
-        <li class="segmented-control__item"  [ngClass]="{'back': players == '1'}"> <input class="segmented-control__input" type="radio" value="1"   name="option" id="option-3" checked [(ngModel)]="players"><label class="segmented-control__label" for="option-3" > 1</label> </li>
+        <li class="segmented-control__item" [ngClass]="{'back': players == '1'}"> <input class="segmented-control__input" type="radio" value="1"   name="option" id="option-3" checked [(ngModel)]="players"><label class="segmented-control__label" for="option-3" > 1</label> </li>
         <li class="segmented-control__item" [ngClass]="{'back': players == '10'}"> <input class="segmented-control__input" type="radio" value="10"   name="option" id="option-4" [(ngModel)]="players" ><label class="segmented-control__label" for="option-4" >10</label> </li>
         <li class="segmented-control__item" [ngClass]="{'back': players == '25'}"> <input class="segmented-control__input" type="radio" value="25"   name="option" id="option-5" [(ngModel)]="players"><label class="segmented-control__label" for="option-5" >25</label> </li>
         <li class="segmented-control__item" [ngClass]="{'back': players == '100'}"> <input class="segmented-control__input" type="radio" value="100"   name="option" id="option-6" [(ngModel)]="players"><label class="segmented-control__label" for="option-6" >100</label> </li>
